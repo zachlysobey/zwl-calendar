@@ -1,6 +1,10 @@
 {
   "name": "zwl-calendar",
   "version": "1.0.0",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/zachlysobey/zwl-calendar.git"
+  },
   "scripts": {},
   "author": "Zachary Lysobey <zachary@lysobey.com> (http://zach.lysobey.com/)"
 }
