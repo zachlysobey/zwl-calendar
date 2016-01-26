@@ -5,6 +5,8 @@
     "type": "git",
     "url": "git+https://github.com/zachlysobey/zwl-calendar.git"
   },
-  "scripts": {},
+  "scripts": {
+    "test": "node test/zwl-calendar.spec.js"
+  },
   "author": "Zachary Lysobey <zachary@lysobey.com> (http://zach.lysobey.com/)"
 }
