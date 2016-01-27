@@ -5,7 +5,7 @@
         throw new Error('zwl-calendar requires a global "document" object');
     }
 
-    var calendarElement = document.getElementById('zwl-calendar');
+    const calendarElement = document.getElementById('zwl-calendar');
 
     calendarElement.innerHTML = '<p>(Calendar)</p>';
 

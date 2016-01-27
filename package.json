@@ -6,7 +6,15 @@
     "url": "git+https://github.com/zachlysobey/zwl-calendar.git"
   },
   "scripts": {
-    "test": "node test/zwl-calendar.spec.js"
+    "test": "node test/zwl-calendar.spec.js",
+    "build": "npm run build:js && npm run copy:demo",
+    "clean:build": "rm -rf build",
+    "build:js": "babel src -d build",
+    "copy:demo": "cp src/example-usage.html build/index.html"
   },
-  "author": "Zachary Lysobey <zachary@lysobey.com> (http://zach.lysobey.com/)"
+  "author": "Zachary Lysobey <zachary@lysobey.com> (http://zach.lysobey.com/)",
+  "devDependencies": {
+    "babel-cli": "^6.4.5",
+    "babel-preset-es2015": "^6.3.13"
+  }
 }
