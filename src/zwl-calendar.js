@@ -1,13 +1,6 @@
-(function (document) {
-    'use strict';
+'use strict';
 
-    if (typeof document === 'undefined') {
-        throw new Error('zwl-calendar requires a global "document" object');
-    }
-
-    const calendarElement = document.getElementById('zwl-calendar');
-
-    calendarElement.innerHTML = '<p>(Calendar)</p>';
-
-
-})(typeof document !== 'undefined' ? document : global.document);
+export function init(id, document = this.document) {
+    const calendarElement = document.getElementById(id);
+    calendarElement.innerHTML = '(Calendar Widget)';
+}
