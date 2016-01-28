@@ -6,7 +6,7 @@
     "url": "git+https://github.com/zachlysobey/zwl-calendar.git"
   },
   "scripts": {
-    "test": "npm run build:js && node test/zwl-calendar.spec.js",
+    "test": "karma start",
     "build": "npm run build:js && npm run copy:demo",
     "clean:build": "rm -rf build",
     "build:js": "babel src -d build",
@@ -19,6 +19,14 @@
     "babel-plugin-transform-es2015-block-scoping": "^6.4.0",
     "babel-plugin-transform-es2015-modules-umd": "^6.4.3",
     "babel-plugin-transform-es2015-parameters": "^6.4.5",
-    "babel-register": "^6.4.3"
+    "babel-register": "^6.4.3",
+    "jasmine": "^2.4.1",
+    "jasmine-core": "^2.4.1",
+    "karma": "^0.13.19",
+    "karma-babel-preprocessor": "^6.0.1",
+    "karma-chrome-launcher": "^0.2.2",
+    "karma-coverage": "^0.5.3",
+    "karma-jasmine": "^0.3.6",
+    "karma-spec-reporter": "0.0.23"
   }
 }

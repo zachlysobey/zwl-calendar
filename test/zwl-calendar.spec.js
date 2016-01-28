@@ -1,21 +1,18 @@
-var Test = require('./fixtures/test-framework');
-var MockDocument = require('./fixtures/mock-document');
+/* global describe, beforeEach, it, expect */
 
-var zwlCalendar = require('../build/zwl-calendar');
+describe('zwl-calendar.js', () => {
+    const zwlCalendar = require('../build/zwl-calendar');
 
-(function testSuite() {
-
-    var document = new MockDocument();
-    var zwlCalendarInit = zwlCalendar.init.bind({document: document});
-
-    new Test('it should insert some html', function () {
-
-        zwlCalendarInit('zwl-calendar');
-
-        var targetElement = document.getElementById('zwl-calendar');
-
-        Test.expectToBeTruthy(targetElement.innerHTML);
-
+    beforeEach(() => {
+        const element = document.createElement('div');
+        element.id = 'target';
+        document.body.appendChild(element);
     });
 
-})();
+    it('should insert some html', () => {
+        const targetElement = document.getElementById('target');
+        zwlCalendar.init('target');
+        expect(targetElement.innerHTML).toBeTruthy();
+    });
+
+});
