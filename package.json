@@ -7,6 +7,7 @@
   },
   "scripts": {
     "test": "karma start",
+    "test:ci": "karma start --browsers PhantomJS",
     "build": "npm run build:js && npm run copy:demo",
     "clean:build": "rm -rf build",
     "build:js": "babel src -d build",
@@ -27,6 +28,8 @@
     "karma-chrome-launcher": "^0.2.2",
     "karma-coverage": "^0.5.3",
     "karma-jasmine": "^0.3.6",
-    "karma-spec-reporter": "0.0.23"
+    "karma-phantomjs-launcher": "^1.0.0",
+    "karma-spec-reporter": "0.0.23",
+    "phantomjs-prebuilt": "^2.1.3"
   }
 }

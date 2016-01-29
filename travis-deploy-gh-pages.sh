@@ -1,7 +1,7 @@
 #!/bin/bash
 set -e
 
-npm run test
+npm run test:ci
 npm run build
 
 cd build
