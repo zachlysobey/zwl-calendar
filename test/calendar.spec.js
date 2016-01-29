@@ -2,7 +2,7 @@
 
 import * as zwlCalendar from '../src/calendar'
 
-describe('zwl-calendar.js', () => {
+describe('calendar widget', () => {
 
     beforeEach(() => {
         const element = document.createElement('div');
