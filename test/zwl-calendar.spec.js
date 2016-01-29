@@ -1,6 +1,6 @@
 /* global describe, beforeEach, it, expect */
 
-import * as zwlCalendar from '../src/zwl-calendar'
+import * as zwlCalendar from '../src/calendar'
 
 describe('zwl-calendar.js', () => {
 

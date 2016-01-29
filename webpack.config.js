@@ -1,6 +1,6 @@
 var path = require('path');
 module.exports = {
-    entry: './src/zwl-calendar',
+    entry: './src/calendar',
     output: {
         path: path.join(__dirname, 'build'),
         publicPath: 'build/',
