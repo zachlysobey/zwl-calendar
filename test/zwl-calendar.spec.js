@@ -1,7 +1,8 @@
 /* global describe, beforeEach, it, expect */
 
+import * as zwlCalendar from '../src/zwl-calendar'
+
 describe('zwl-calendar.js', () => {
-    const zwlCalendar = require('../build/zwl-calendar');
 
     beforeEach(() => {
         const element = document.createElement('div');

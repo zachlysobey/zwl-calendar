@@ -1,21 +1,19 @@
-// karma.conf.js
+var webpackConfig = require('./webpack.config.js');
+delete webpackConfig.entry;
 module.exports = function (config) {
     config.set({
         frameworks: ['jasmine'],
         files: [
-            'src/*.js',
             'test/*.spec.js'
         ],
         preprocessors: {
-            'src/*.js': ['babel', 'coverage'],
-            'test/*.js': ['babel']
+            'test/*.spec.js': ['webpack']
         },
-        reporters: ['spec', 'coverage'],
-        coverageReporter: {
-            reporters: [
-                { type: 'text' }
-            ]
+        webpack: webpackConfig,
+        webpackMiddleware: {
+            noInfo: true
         },
+        reporters: ['spec'],
         singleRun: true,
         browsers: ['Chrome']
     });
