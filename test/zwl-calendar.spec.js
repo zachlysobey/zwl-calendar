@@ -12,7 +12,7 @@ describe('zwl-calendar.js', () => {
     it('should insert some html', () => {
         const targetElement = document.getElementById('target');
         zwlCalendar.init('target');
-        expect(targetElement.innerHTML).toBeTruthy();
+        expect(targetElement.innerHTML).toEqual('(Calendar Widget)');
     });
 
 });
