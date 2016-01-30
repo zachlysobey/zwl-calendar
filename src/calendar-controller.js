@@ -40,13 +40,13 @@ export default function CalendarController() {
 
     function validateYear(year) {
         if (!Number.isInteger(year)) {
-            throw new Error('Year must be an integer');
+            throw new Error('Year must be an integer. Found ' + year);
         }
     }
 
     function validateMonthIndex(monthIndex) {
         if (!Number.isInteger(monthIndex) || monthIndex < 0 || monthIndex > 11) {
-            throw new Error('Month index must be an integer between 0 - 11');
+            throw new Error('Month index must be an integer between 0 - 11. Found ' + monthIndex);
         }
     }
 }
