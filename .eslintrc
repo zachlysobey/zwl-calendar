@@ -34,6 +34,7 @@
         "brace-style": 2,
         "camelcase": 2,
         "comma-style": [2, "last"],
-        "semi": [2, "always"]
+        "semi": [2, "always"],
+        "max-len": [2, 100, 4]
     }
 }
