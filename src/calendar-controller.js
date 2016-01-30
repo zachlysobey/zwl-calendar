@@ -4,29 +4,38 @@ import './polyfill/number-is-integer';
 export default function CalendarController() {
 
     let currentMonth;
+    let currentYear;
 
     this.getMonth = getMonth;
     this.nextMonth = nextMonth;
     this.previousMonth = previousMonth;
 
-    function getMonth(monthIndex) {
+    function getMonth(monthIndex, year) {
         validateMonthIndex(monthIndex);
+        // TODO: Validate year
         currentMonth = monthIndex;
-        return new MonthModel(monthIndex);
+        currentYear = year;
+        return new MonthModel(monthIndex, year);
     }
 
     function nextMonth() {
         if (typeof currentMonth === 'undefined') {
             throw new Error('Can not call nextMonth when no current month set');
         }
-        return (currentMonth < 11) ? this.getMonth(currentMonth + 1) : this.getMonth(0);
+        if (currentMonth === 11) {
+            return this.getMonth(0, currentYear + 1);
+        }
+        return this.getMonth(currentMonth + 1, currentYear);
     }
 
     function previousMonth() {
         if (typeof currentMonth === 'undefined') {
             throw new Error('Can not call previousMonth when no current month set');
         }
-        return (currentMonth > 0) ? this.getMonth(currentMonth - 1) : this.getMonth(11);
+        if (currentMonth === 0) {
+            return this.getMonth(11, currentYear - 1);
+        }
+        return this.getMonth(currentMonth - 1, currentYear);
     }
 
     function validateMonthIndex(monthIndex) {
@@ -36,6 +45,7 @@ export default function CalendarController() {
     }
 }
 
-function MonthModel(monthIndex) {
+function MonthModel(monthIndex, year) {
     this.monthName = months[monthIndex];
+    this.year = year;
 }

@@ -14,17 +14,26 @@ describe('calendar controller', () => {
             expect(typeof calendarCtrl.getMonth).toEqual('function');
         });
 
-        it('should throw Error if not passed an integer 0 - 11', () => {
+        it('should throw Error if 1st argument not an integer 0 - 11', () => {
             const invalidDateIndicies = [undefined, null, 'string', {}, [], -1, 12, 3.5, 111];
             invalidDateIndicies.forEach(index => {
-                expect(() => calendarCtrl.getMonth(index)).toThrow();
+                expect(() => calendarCtrl.getMonth(index, 2015)).toThrow();
             });
         });
 
-        it('should return an object with month property', () => {
-            expect(calendarCtrl.getMonth(0).monthName).toEqual('January');
-            expect(calendarCtrl.getMonth(1).monthName).toEqual('February');
-            expect(calendarCtrl.getMonth(11).monthName).toEqual('December');
+        it('should return an object with monthName and year properties', () => {
+            expect(calendarCtrl.getMonth(0, 2015)).toEqual(jasmine.objectContaining({
+                monthName: 'January',
+                year: 2015
+            }));
+            expect(calendarCtrl.getMonth(1, 1994)).toEqual(jasmine.objectContaining({
+                monthName: 'February',
+                year: 1994
+            }));
+            expect(calendarCtrl.getMonth(11, 3125)).toEqual(jasmine.objectContaining({
+                monthName: 'December',
+                year: 3125
+            }));
         });
 
     });
@@ -40,14 +49,26 @@ describe('calendar controller', () => {
         });
 
         it('should return the next month object', () => {
-            calendarCtrl.getMonth(0);
-            expect(calendarCtrl.nextMonth().monthName).toEqual('February');
-            expect(calendarCtrl.nextMonth().monthName).toEqual('March');
+            calendarCtrl.getMonth(0, 2015);
 
-            calendarCtrl.getMonth(11);
-            expect(calendarCtrl.nextMonth().monthName).toEqual('January');
+            expect(calendarCtrl.nextMonth()).toEqual(jasmine.objectContaining({
+                monthName: 'February',
+                year: 2015
+            }));
+
+            expect(calendarCtrl.nextMonth()).toEqual(jasmine.objectContaining({
+                monthName: 'March',
+                year: 2015
+            }));
         });
 
+        it('should roll over to the next year', () => {
+            calendarCtrl.getMonth(11, 2015);
+            expect(calendarCtrl.nextMonth()).toEqual(jasmine.objectContaining({
+                monthName: 'January',
+                year: 2016
+            }));
+        });
     });
 
     describe('previousMonth() method', () => {
@@ -60,13 +81,24 @@ describe('calendar controller', () => {
             expect(() => calendarCtrl.previousMonth()).toThrow();
         });
 
-        it('should return the next month object', () => {
-            calendarCtrl.getMonth(11);
-            expect(calendarCtrl.previousMonth().monthName).toEqual('November');
-            expect(calendarCtrl.previousMonth().monthName).toEqual('October');
+        it('should return the previous month object', () => {
+            calendarCtrl.getMonth(11, 2015);
+            expect(calendarCtrl.previousMonth()).toEqual(jasmine.objectContaining({
+                monthName: 'November',
+                year: 2015
+            }));
+            expect(calendarCtrl.previousMonth()).toEqual(jasmine.objectContaining({
+                monthName: 'October',
+                year: 2015
+            }));
+        });
 
-            calendarCtrl.getMonth(0);
-            expect(calendarCtrl.previousMonth().monthName).toEqual('December');
+        it('should roll over to the previous year', () => {
+            calendarCtrl.getMonth(0, 2015);
+            expect(calendarCtrl.previousMonth()).toEqual(jasmine.objectContaining({
+                monthName: 'December',
+                year: 2014
+            }));
         });
 
     });
