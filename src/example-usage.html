@@ -23,12 +23,22 @@
     </p>
     <h2>Usage:</h2>
     <p>Include the <code>zwl-calendar.js</code> script</p>
-    <p>Paste this snippet where you want the calendar to appear</p>
-    <pre><code>&lt;div id="zwl-calendar \"&gt;</code></pre>
-    <div id="zwl-calendar" />
+    <p>
+        ZWL Calendar exports a global variable (<code>zwlCalendar</code>)
+        with an <code>.init()</code> method. Pass <code>init()</code> the
+        id of a DOM element, and a new ZWL calendar will be inserted into
+        that element.
+    </p>
+<pre><code>
+&lt;div id="my-calendar \"&gt;
+&lt;script&gt;
+zwlCalendar.init('my-calendar');
+&lt;/script&gt;
+</code></pre>
+    <div id="my-calendar" />
     <script src="zwl-calendar.js"></script>
     <script>
-        zwlCalendar.init('zwl-calendar');
+        zwlCalendar.init('my-calendar');
     </script>
 </body>
 </html>
