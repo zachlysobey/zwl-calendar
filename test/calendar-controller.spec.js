@@ -41,9 +41,11 @@ describe('calendar controller', () => {
 
         it('should return the next month object', () => {
             calendarCtrl.getMonth(0);
-
             expect(calendarCtrl.nextMonth().month).toEqual('February');
             expect(calendarCtrl.nextMonth().month).toEqual('March');
+
+            calendarCtrl.getMonth(11);
+            expect(calendarCtrl.nextMonth().month).toEqual('January');
         });
 
     });

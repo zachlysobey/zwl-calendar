@@ -15,7 +15,7 @@ export default function CalendarController() {
         if (typeof currentMonth === 'undefined') {
             throw new Error('Can not call nextMonth when no current month set');
         }
-        return this.getMonth(currentMonth + 1);
+        return (currentMonth < 11) ? this.getMonth(currentMonth + 1) : this.getMonth(0);
     };
 
     function validateMonthIndex(monthIndex) {
