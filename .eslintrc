@@ -33,6 +33,7 @@
         "no-var": 2,
         "brace-style": 2,
         "camelcase": 2,
-        "comma-style": [2, "last"]
+        "comma-style": [2, "last"],
+        "semi": [2, "always"]
     }
 }
