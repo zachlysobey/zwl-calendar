@@ -30,11 +30,14 @@
         "globalReturn": true
     },
     "rules": {
+        "no-console": 1,
+        "eol-last": 2,
         "no-var": 2,
         "brace-style": 2,
         "camelcase": 2,
         "comma-style": [2, "last"],
         "semi": [2, "always"],
+        "quotes": [2, "single"],
         "max-len": [2, 100, 4, {"ignoreComments": true, "ignoreUrls": true}]
     }
 }
