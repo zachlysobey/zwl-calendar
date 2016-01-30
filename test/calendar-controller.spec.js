@@ -15,17 +15,7 @@ describe('calendar controller', () => {
         });
 
         it('should throw Error if not passed an integer 0 - 11', () => {
-            const invalidDateIndicies = [
-                undefined,
-                null,
-                'string',
-                {},
-                [],
-                -1,
-                12,
-                3.5,
-                111
-            ];
+            const invalidDateIndicies = [undefined, null, 'string', {}, [], -1, 12, 3.5, 111];
             invalidDateIndicies.forEach(index => {
                 expect(() => calendarCtrl.getMonth(index)).toThrow();
             });
