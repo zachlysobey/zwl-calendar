@@ -5,6 +5,7 @@ export default function CalendarController() {
     let currentMonth;
 
     this.getMonth = function(monthIndex) {
+        validateMonthIndex(monthIndex);
         currentMonth = monthIndex;
         return new MonthModel(monthIndex);
     };
@@ -15,6 +16,12 @@ export default function CalendarController() {
         }
         return this.getMonth(currentMonth + 1);
     };
+
+    function validateMonthIndex(monthIndex) {
+        if (!Number.isInteger(monthIndex) || monthIndex < 0 || monthIndex > 11) {
+            throw new Error('Month index must be an integer between 0 - 11');
+        }
+    }
 
     function MonthModel(monthIndex) {
         this.month = months[monthIndex];

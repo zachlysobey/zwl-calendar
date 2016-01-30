@@ -14,6 +14,23 @@ describe('calendar controller', () => {
             expect(typeof calendarCtrl.getMonth).toEqual('function');
         });
 
+        it('should throw Error if not passed an integer 0 - 11', () => {
+            const invalidDateIndicies = [
+                undefined,
+                null,
+                'string',
+                {},
+                [],
+                -1,
+                12,
+                3.5,
+                111
+            ];
+            invalidDateIndicies.forEach(index => {
+                expect(() => calendarCtrl.getMonth(index)).toThrow();
+            });
+        });
+
         it('should return an object with month property', () => {
             expect(calendarCtrl.getMonth(0).month).toEqual('January');
             expect(calendarCtrl.getMonth(1).month).toEqual('February');
