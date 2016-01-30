@@ -110,4 +110,24 @@ describe('calendar controller', () => {
 
     });
 
+    describe('getDay() method', () => {
+
+        it('should exist', () => {
+            expect(typeof calendarCtrl.getDay).toEqual('function');
+        });
+
+        it('should throw an Error if first argument is not an integer 1 - 31', () => {
+            const invalidDayNumbers = [undefined, null, 'string', {}, [], -1, 32, 3.5, 123];
+            invalidDayNumbers.forEach(dayNumber => {
+                expect(() => calendarCtrl.getDay(dayNumber)).toThrow();
+            });
+        });
+
+        it('should return an object containing dayNumber property', () => {
+            expect(calendarCtrl.getDay(1).dayNumber).toEqual(1);
+            expect(calendarCtrl.getDay(31).dayNumber).toEqual(31);
+        });
+
+    });
+
 });

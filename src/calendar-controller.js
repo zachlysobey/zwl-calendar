@@ -9,6 +9,7 @@ export default function CalendarController() {
     this.getMonth = getMonth;
     this.nextMonth = nextMonth;
     this.previousMonth = previousMonth;
+    this.getDay = getDay;
 
     function getMonth(monthIndex, year) {
         validateMonthIndex(monthIndex);
@@ -38,6 +39,11 @@ export default function CalendarController() {
         return this.getMonth(currentMonth - 1, currentYear);
     }
 
+    function getDay(dayNumber) {
+        validateDay(dayNumber);
+        return new DayModel(dayNumber);
+    }
+
     function validateYear(year) {
         if (!Number.isInteger(year)) {
             throw new Error('Year must be an integer. Found ' + year);
@@ -49,9 +55,19 @@ export default function CalendarController() {
             throw new Error('Month index must be an integer between 0 - 11. Found ' + monthIndex);
         }
     }
+
+    function validateDay(dayNumber) {
+        if (!Number.isInteger(dayNumber) || dayNumber < 1 || dayNumber > 31) {
+            throw new Error('Day number must be an integer between 1 - 31. Found ' + dayNumber);
+        }
+    }
 }
 
 function MonthModel(monthIndex, year) {
     this.monthName = months[monthIndex];
     this.year = year;
+}
+
+function DayModel(dayNumber) {
+    this.dayNumber = dayNumber;
 }
