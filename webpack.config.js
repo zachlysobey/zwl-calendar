@@ -1,12 +1,12 @@
-var path = require('path');
+const path = require('path');
 module.exports = {
     entry: './src/calendar',
     output: {
         path: path.join(__dirname, 'build'),
         publicPath: 'build/',
         filename: 'zwl-calendar.js',
-        libraryTarget: "var",
-        library: "zwlCalendar"
+        libraryTarget: 'var',
+        library: 'zwlCalendar'
     },
     module: {
         loaders: [

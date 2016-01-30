@@ -1,6 +1,4 @@
-/* global describe, beforeEach, it, expect */
-
-import * as zwlCalendar from '../src/calendar'
+import * as zwlCalendar from '../src/calendar';
 
 describe('calendar widget', () => {
 

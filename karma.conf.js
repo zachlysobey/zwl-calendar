@@ -1,4 +1,4 @@
-var webpackConfig = require('./webpack.config.js');
+const webpackConfig = require('./webpack.config.js');
 delete webpackConfig.entry;
 module.exports = function (config) {
     config.set({

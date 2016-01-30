@@ -1,6 +1,7 @@
 #!/bin/bash
 set -e
 
+npm run lint
 npm run test:ci
 npm run build
 

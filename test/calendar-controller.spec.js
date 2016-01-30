@@ -1,6 +1,4 @@
-/* global describe, beforeEach, it, expect */
-
-import * as calendarController from '../src/calendar-controller'
+import * as calendarController from '../src/calendar-controller';
 
 describe('calendar controller', () => {
 
