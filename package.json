@@ -8,6 +8,7 @@
   "scripts": {
     "test": "karma start",
     "test:ci": "karma start --browsers PhantomJS",
+    "watch": "karma start --auto-watch --no-single-run",
     "build": "npm run build:js && npm run copy:demo",
     "clean": "rm -rf build",
     "build:js": "webpack --config webpack.config.js",

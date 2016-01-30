@@ -14,6 +14,7 @@ module.exports = function (config) {
             noInfo: true
         },
         reporters: ['spec'],
+        autoWatch: false,
         singleRun: true,
         browsers: ['Chrome']
     });
