@@ -1,4 +1,5 @@
 import {MONTHS as months} from './calendar-constants';
+import './polyfill/number-is-integer';
 
 export default function CalendarController() {
 
