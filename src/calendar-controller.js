@@ -32,6 +32,6 @@ export default function CalendarController() {
     }
 
     function MonthModel(monthIndex) {
-        this.month = months[monthIndex];
+        this.monthName = months[monthIndex];
     }
 }

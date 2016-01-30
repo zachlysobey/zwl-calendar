@@ -22,9 +22,9 @@ describe('calendar controller', () => {
         });
 
         it('should return an object with month property', () => {
-            expect(calendarCtrl.getMonth(0).month).toEqual('January');
-            expect(calendarCtrl.getMonth(1).month).toEqual('February');
-            expect(calendarCtrl.getMonth(11).month).toEqual('December');
+            expect(calendarCtrl.getMonth(0).monthName).toEqual('January');
+            expect(calendarCtrl.getMonth(1).monthName).toEqual('February');
+            expect(calendarCtrl.getMonth(11).monthName).toEqual('December');
         });
 
     });
@@ -41,11 +41,11 @@ describe('calendar controller', () => {
 
         it('should return the next month object', () => {
             calendarCtrl.getMonth(0);
-            expect(calendarCtrl.nextMonth().month).toEqual('February');
-            expect(calendarCtrl.nextMonth().month).toEqual('March');
+            expect(calendarCtrl.nextMonth().monthName).toEqual('February');
+            expect(calendarCtrl.nextMonth().monthName).toEqual('March');
 
             calendarCtrl.getMonth(11);
-            expect(calendarCtrl.nextMonth().month).toEqual('January');
+            expect(calendarCtrl.nextMonth().monthName).toEqual('January');
         });
 
     });
@@ -62,11 +62,11 @@ describe('calendar controller', () => {
 
         it('should return the next month object', () => {
             calendarCtrl.getMonth(11);
-            expect(calendarCtrl.previousMonth().month).toEqual('November');
-            expect(calendarCtrl.previousMonth().month).toEqual('October');
+            expect(calendarCtrl.previousMonth().monthName).toEqual('November');
+            expect(calendarCtrl.previousMonth().monthName).toEqual('October');
 
             calendarCtrl.getMonth(0);
-            expect(calendarCtrl.previousMonth().month).toEqual('December');
+            expect(calendarCtrl.previousMonth().monthName).toEqual('December');
         });
 
     });

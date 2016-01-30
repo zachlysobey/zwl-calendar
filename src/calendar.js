@@ -16,13 +16,13 @@ export function init(id) {
 
     previousMonthLink.addEventListener('click', () => {
         const prevMonth = calendarCtrl.previousMonth();
-        currentMonthTitle.innerHTML = prevMonth.month;
+        currentMonthTitle.innerHTML = prevMonth.monthName;
         return false;
     });
 
     nextMonthLink.addEventListener('click', () => {
         const nextMonth = calendarCtrl.nextMonth();
-        currentMonthTitle.innerHTML = nextMonth.month;
+        currentMonthTitle.innerHTML = nextMonth.monthName;
         return false;
     });
 }
@@ -34,7 +34,7 @@ function buildCalendar(month) {
                 <header class="month-navigation">
                     <a href="#" class="prev-month">&lt;</a>
                     <span class="current-month">
-                        ${month.month}
+                        ${month.monthName}
                     </span>
                     <a href="#" class="next-month">&gt;</a>
                 </header>
