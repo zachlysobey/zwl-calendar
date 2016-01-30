@@ -35,6 +35,6 @@
         "camelcase": 2,
         "comma-style": [2, "last"],
         "semi": [2, "always"],
-        "max-len": [2, 100, 4]
+        "max-len": [2, 100, 4, {"ignoreComments": true, "ignoreUrls": true}]
     }
 }
