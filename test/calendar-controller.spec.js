@@ -50,4 +50,25 @@ describe('calendar controller', () => {
 
     });
 
+    describe('previousMonth() method', () => {
+
+        it('should exist', () => {
+            expect(typeof calendarCtrl.previousMonth).toEqual('function');
+        });
+
+        it('should throw error if month has never been retrieved', () => {
+            expect(() => calendarCtrl.previousMonth()).toThrow();
+        });
+
+        it('should return the next month object', () => {
+            calendarCtrl.getMonth(11);
+            expect(calendarCtrl.previousMonth().month).toEqual('November');
+            expect(calendarCtrl.previousMonth().month).toEqual('October');
+
+            calendarCtrl.getMonth(0);
+            expect(calendarCtrl.previousMonth().month).toEqual('December');
+        });
+
+    });
+
 });
