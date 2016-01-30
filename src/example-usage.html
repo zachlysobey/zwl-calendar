@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>zwl-calendar</title>
+    <link rel="stylesheet" href="zwl-calendar.css">
 </head>
 <body>
     <h1>
@@ -22,7 +23,7 @@
         )
     </p>
     <h2>Usage:</h2>
-    <p>Include the <code>zwl-calendar.js</code> script</p>
+    <p>Include the <code>zwl-calendar.js</code> script and stylesheet</p>
     <p>
         ZWL Calendar exports a global variable (<code>zwlCalendar</code>)
         with an <code>.init()</code> method. Pass <code>init()</code> the
@@ -30,7 +31,10 @@
         that element.
     </p>
 <pre><code>
+&lt;link rel="stylesheet" href="zwl-calendar.css"&gt;
+
 &lt;div id="my-calendar \"&gt;
+
 &lt;script&gt;
 zwlCalendar.init('my-calendar');
 &lt;/script&gt;

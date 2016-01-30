@@ -1,0 +1,26 @@
+zwl-calendar {
+    display: block;
+}
+
+zwl-calendar .month-view {
+    width: 350px;
+    border: 1px solid #333;
+}
+
+zwl-calendar .month-navigation {
+    text-align: center;
+}
+
+zwl-calendar .month-navigation .prev-month,
+zwl-calendar .month-navigation .next-month {
+    text-decoration: none;
+    color: #333;
+}
+
+zwl-calendar .month-navigation .prev-month {
+    float: left;
+}
+
+zwl-calendar .month-navigation .next-month {
+    float: right;
+}

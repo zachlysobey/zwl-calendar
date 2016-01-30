@@ -9,11 +9,12 @@
     "test": "karma start",
     "test:ci": "karma start --browsers PhantomJS",
     "watch": "karma start --auto-watch --no-single-run",
-    "build": "npm run build:js && npm run copy:demo",
+    "build": "npm run build:js && npm run copy:demo && npm run copy:css",
     "clean": "rm -rf build",
     "build:js": "webpack --config webpack.config.js",
     "lint": "eslint src/ test/ ./*.js",
-    "copy:demo": "cp src/example-usage.html build/index.html"
+    "copy:demo": "cp src/example-usage.html build/index.html",
+    "copy:css": "cp src/style.css build/zwl-calendar.css"
   },
   "author": "Zachary Lysobey <zachary@lysobey.com> (http://zach.lysobey.com/)",
   "devDependencies": {
