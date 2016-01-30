@@ -21,6 +21,13 @@ describe('calendar controller', () => {
             });
         });
 
+        it('should throw an Error if 2nd argument is not an integer', () => {
+            const invalidYears = [undefined, null, 'string', {}, [], 3.5];
+            invalidYears.forEach(year => {
+                expect(() => calendarCtrl.getMonth(1, year)).toThrow();
+            });
+        });
+
         it('should return an object with monthName and year properties', () => {
             expect(calendarCtrl.getMonth(0, 2015)).toEqual(jasmine.objectContaining({
                 monthName: 'January',

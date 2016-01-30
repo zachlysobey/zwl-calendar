@@ -12,7 +12,7 @@ export default function CalendarController() {
 
     function getMonth(monthIndex, year) {
         validateMonthIndex(monthIndex);
-        // TODO: Validate year
+        validateYear(year);
         currentMonth = monthIndex;
         currentYear = year;
         return new MonthModel(monthIndex, year);
@@ -36,6 +36,12 @@ export default function CalendarController() {
             return this.getMonth(11, currentYear - 1);
         }
         return this.getMonth(currentMonth - 1, currentYear);
+    }
+
+    function validateYear(year) {
+        if (!Number.isInteger(year)) {
+            throw new Error('Year must be an integer');
+        }
     }
 
     function validateMonthIndex(monthIndex) {
