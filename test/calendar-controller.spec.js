@@ -15,8 +15,8 @@ describe('calendar controller', () => {
         });
 
         it('should throw Error if 1st argument not an integer 0 - 11', () => {
-            const invalidDateIndicies = [undefined, null, 'string', {}, [], -1, 12, 3.5, 111];
-            invalidDateIndicies.forEach(index => {
+            const invalidMonthIndicies = [undefined, null, 'string', {}, [], -1, 12, 3.5, 111];
+            invalidMonthIndicies.forEach(index => {
                 expect(() => calendarCtrl.getMonth(index, 2015)).toThrow();
             });
         });
@@ -116,16 +116,33 @@ describe('calendar controller', () => {
             expect(typeof calendarCtrl.getDay).toEqual('function');
         });
 
-        it('should throw an Error if first argument is not an integer 1 - 31', () => {
+        it('should throw an Error if 1st argument (day number) is not an integer 1 - 31', () => {
             const invalidDayNumbers = [undefined, null, 'string', {}, [], -1, 32, 3.5, 123];
             invalidDayNumbers.forEach(dayNumber => {
                 expect(() => calendarCtrl.getDay(dayNumber)).toThrow();
             });
         });
 
+        it('should throw an Error if 2nd arg is not a valid monthIndex', () => {
+            const dayNumber = 1;
+            const invalidMonthIndicies = [undefined, null, 'string', {}, [], -1, 12, 3.5, 111];
+            invalidMonthIndicies.forEach(monthIndex => {
+                expect(() => calendarCtrl.getDay(dayNumber, monthIndex)).toThrow();
+            });
+        });
+
+        it('should throw an Error if 3rd arg is not a valid year', () => {
+            const dayNumber = 1;
+            const monthIndex = 3;
+            const invalidYears = [undefined, null, 'string', {}, [], 3.5];
+            invalidYears.forEach(year => {
+                expect(() => calendarCtrl.getDay(dayNumber, monthIndex, year)).toThrow();
+            });
+        });
+
         it('should return an object containing dayNumber property', () => {
-            expect(calendarCtrl.getDay(1).dayNumber).toEqual(1);
-            expect(calendarCtrl.getDay(31).dayNumber).toEqual(31);
+            expect(calendarCtrl.getDay(1, 1, 2015).dayNumber).toEqual(1);
+            expect(calendarCtrl.getDay(31, 1, 2015).dayNumber).toEqual(31);
         });
 
     });

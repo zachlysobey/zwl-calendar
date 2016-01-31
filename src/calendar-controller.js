@@ -39,8 +39,10 @@ export default function CalendarController() {
         return this.getMonth(currentMonth - 1, currentYear);
     }
 
-    function getDay(dayNumber) {
+    function getDay(dayNumber, monthIndex, year) {
         validateDay(dayNumber);
+        validateMonthIndex(monthIndex);
+        validateYear(year);
         return new DayModel(dayNumber);
     }
 }

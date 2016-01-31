@@ -7,7 +7,7 @@ export function init(id) {
     const calendarElement = document.getElementById(id);
 
     const currentMonth = calendarCtrl.getMonth(now.getMonth(), now.getFullYear());
-    const currentDay = calendarCtrl.getDay(now.getDate());
+    const currentDay = calendarCtrl.getDay(now.getDate(), now.getMonth(), now.getFullYear());
 
     calendarElement.innerHTML = buildCalendar(currentMonth, currentDay);
 
