@@ -1,13 +1,39 @@
 zwl-calendar {
     display: block;
+    border: 1px solid #333;
+    width: 500px;
+    height: 200px;
+    font-family: Helvetica, Arial, sans-serif;
+}
+
+zwl-calendar .day-view {
+    width: 180px;
+    height: 200px;
+    float: left;
+    text-align: center;
 }
 
 zwl-calendar .month-view {
-    width: 350px;
-    border: 1px solid #333;
+    width: 320px;
+    height: 200px;
+    float: right;
+}
+
+zwl-calendar .day-name {
+    margin-top: 10px;
+}
+
+zwl-calendar .day-number {
+    font-size: 80px;
+    font-weight: bold;
+    color: rgba(50,50,50, 0.8);
+    text-shadow: 1px 4px 6px #def, 0 0 0 #000, 1px 4px 6px #def;
+    margin: 0;
+    line-height: 120px;
 }
 
 zwl-calendar .month-navigation {
+    margin-top: 10px;
     text-align: center;
 }
 
@@ -18,9 +44,11 @@ zwl-calendar .month-navigation .next-month {
 }
 
 zwl-calendar .month-navigation .prev-month {
+    margin-left: .5em;
     float: left;
 }
 
 zwl-calendar .month-navigation .next-month {
+    margin-right: .5em;
     float: right;
 }

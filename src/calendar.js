@@ -7,8 +7,9 @@ export function init(id) {
     const calendarElement = document.getElementById(id);
 
     const currentMonth = calendarCtrl.getMonth(now.getMonth(), now.getFullYear());
+    const currentDay = calendarCtrl.getDay(now.getDate());
 
-    calendarElement.innerHTML = buildCalendar(currentMonth);
+    calendarElement.innerHTML = buildCalendar(currentMonth, currentDay);
 
     const previousMonthLink = calendarElement.getElementsByClassName('prev-month')[0];
     const nextMonthLink = calendarElement.getElementsByClassName('next-month')[0];
@@ -30,9 +31,17 @@ export function init(id) {
     });
 }
 
-function buildCalendar(month) {
+function buildCalendar(month, day) {
     return `
         <zwl-calendar>
+            <section class="day-view">
+                <p class="day-name">
+                    (Day Name)
+                </p>
+                <p class="day-number">
+                    ${day.dayNumber}
+                </p>
+            </section>
             <section class="month-view">
                 <header class="month-navigation">
                     <a href="#" class="prev-month">&lt;</a>
