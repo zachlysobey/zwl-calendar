@@ -36,7 +36,7 @@ function buildCalendar(month, day) {
         <zwl-calendar>
             <section class="day-view">
                 <p class="day-name">
-                    (Day Name)
+                    ${day.dayName}
                 </p>
                 <p class="day-number">
                     ${day.dayNumber}
