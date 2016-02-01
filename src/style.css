@@ -2,20 +2,20 @@ zwl-calendar {
     display: block;
     border: 1px solid #333;
     width: 500px;
-    height: 200px;
+    height: 220px;
     font-family: Helvetica, Arial, sans-serif;
 }
 
 zwl-calendar .day-view {
     width: 180px;
-    height: 200px;
+    height: 220px;
     float: left;
     text-align: center;
 }
 
 zwl-calendar .month-view {
     width: 320px;
-    height: 200px;
+    height: 220px;
     float: right;
 }
 
@@ -29,11 +29,12 @@ zwl-calendar .day-number {
     color: rgba(50,50,50, 0.8);
     text-shadow: 1px 4px 6px #def, 0 0 0 #000, 1px 4px 6px #def;
     margin: 0;
-    line-height: 120px;
+    line-height: 140px;
 }
 
 zwl-calendar .month-navigation {
     margin-top: 10px;
+    margin-bottom: 20px;
     text-align: center;
 }
 
@@ -51,4 +52,11 @@ zwl-calendar .month-navigation .prev-month {
 zwl-calendar .month-navigation .next-month {
     margin-right: .5em;
     float: right;
+}
+
+zwl-calendar .month-table th,
+zwl-calendar .month-table td {
+    width: 40px;
+    padding: 2px 12px;
+    text-align: center;
 }
