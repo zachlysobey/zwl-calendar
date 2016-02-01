@@ -55,7 +55,7 @@ describe('calendar controller', () => {
             expect(() => calendarCtrl.nextMonth()).toThrow();
         });
 
-        it('should return the next month object', () => {
+        it('should return an object representing the month', () => {
             calendarCtrl.getMonth(0, 2015);
 
             expect(calendarCtrl.nextMonth()).toEqual(jasmine.objectContaining({
@@ -76,6 +76,20 @@ describe('calendar controller', () => {
                 year: 2016
             }));
         });
+
+        describe('MonthModel', () => {
+
+            it('should have a method .getDay(dayNumber)', () => {
+                const month = calendarCtrl.getMonth(11, 2015);
+                expect(month.getDay(1)).toEqual(jasmine.objectContaining({
+                    dayNumber: 1,
+                    monthIndex: 11,
+                    year: 2015
+                }));
+            });
+
+        });
+
     });
 
     describe('previousMonth() method', () => {
