@@ -1,4 +1,5 @@
 import CalendarController from './calendar-controller';
+import {DAYS} from './calendar-constants';
 
 export function init(id) {
     const calendarCtrl = new CalendarController();
@@ -15,11 +16,13 @@ export function init(id) {
     const nextMonthLink = calendarElement.getElementsByClassName('next-month')[0];
     const currentMonthTitle = calendarElement.getElementsByClassName('current-month')[0];
     const currentYearTitle = calendarElement.getElementsByClassName('current-year')[0];
+    const monthTable = calendarElement.getElementsByClassName('month-table')[0];
 
     previousMonthLink.addEventListener('click', () => {
         const prevMonth = calendarCtrl.previousMonth();
         currentMonthTitle.innerHTML = prevMonth.monthName;
         currentYearTitle.innerHTML = prevMonth.year;
+        monthTable.innerHTML = buildMonthTable(prevMonth.grid);
         return false;
     });
 
@@ -27,12 +30,13 @@ export function init(id) {
         const nextMonth = calendarCtrl.nextMonth();
         currentMonthTitle.innerHTML = nextMonth.monthName;
         currentYearTitle.innerHTML = nextMonth.year;
+        monthTable.innerHTML = buildMonthTable(nextMonth.grid);
         return false;
     });
 }
 
 function buildCalendar(month, day) {
-    return `
+    const calendarHtml =  `
         <zwl-calendar>
             <section class="day-view">
                 <p class="day-name">
@@ -53,7 +57,33 @@ function buildCalendar(month, day) {
                     </span>
                     <a href="#" class="next-month">&gt;</a>
                 </header>
+                <table class="month-table">
+                    ${buildMonthTable(month.grid)}
+                </table>
             <section>
         </zwl-calendar>
     `;
+    return calendarHtml;
+}
+
+function buildMonthTable(grid) {
+    return `
+        <thead>${buildMonthTableHeader()}</thead>
+        <tbody>${buildMonthTableBody(grid)}</tbody>
+    `;
+}
+
+function buildMonthTableHeader() {
+    const headerHtml = DAYS
+        .map(dayName => dayName.charAt(0))
+        .reduce((prev, curr) => prev + `<th>${curr}</th>`, '');
+    return headerHtml;
+}
+
+function buildMonthTableBody(grid) {
+    const rows = grid.map(week => {
+        const cells = week.map(dayNumber => `<td>${dayNumber ? dayNumber : ''}</td>`);
+        return `<tr>${cells.join('')}</tr>`;
+    });
+    return rows.join('');
 }
