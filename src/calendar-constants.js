@@ -22,3 +22,7 @@ export const DAYS = Object.freeze([
     'Friday',
     'Saturday'
 ]);
+
+export const DAY_COUNT_PER_MONTH = Object.freeze([
+    31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31
+]);
