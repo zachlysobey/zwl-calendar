@@ -111,6 +111,26 @@ describe('calendar controller', () => {
                 ]);
             });
 
+            it('should account adjust February day count in leap year', () => {
+                const februaryNotLeapYear = calendarCtrl.getMonth(1, 2015);
+                const februaryInLeapYear = calendarCtrl.getMonth(1, 2016);
+
+                expect(februaryNotLeapYear.grid).toEqual([
+                    [1, 2, 3, 4, 5, 6, 7],
+                    [8, 9, 10, 11, 12, 13, 14],
+                    [15, 16, 17, 18, 19, 20, 21],
+                    [22, 23, 24, 25, 26, 27, 28]
+                ]);
+
+                expect(februaryInLeapYear.grid).toEqual([
+                    [null, 1, 2, 3, 4, 5, 6],
+                    [7, 8, 9, 10, 11, 12, 13],
+                    [14, 15, 16, 17, 18, 19, 20],
+                    [21, 22, 23, 24, 25, 26, 27],
+                    [28, 29, null, null, null, null, null]
+                ]);
+            });
+
         });
 
     });
