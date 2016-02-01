@@ -140,9 +140,22 @@ describe('calendar controller', () => {
             });
         });
 
-        it('should return an object containing dayNumber property', () => {
-            expect(calendarCtrl.getDay(1, 1, 2015).dayNumber).toEqual(1);
-            expect(calendarCtrl.getDay(31, 1, 2015).dayNumber).toEqual(31);
+        it('should return an object representing the day', () => {
+            expect(calendarCtrl.getDay(1, 0, 2015)).toEqual(jasmine.objectContaining({
+                dayNumber: 1,
+                dayName: 'Thursday',
+                dayInitial: 'T',
+                monthIndex: 0,
+                year: 2015
+            }));
+
+            expect(calendarCtrl.getDay(31, 0, 2016)).toEqual(jasmine.objectContaining({
+                dayNumber: 31,
+                dayName: 'Sunday',
+                dayInitial: 'S',
+                monthIndex: 0,
+                year: 2016
+            }));
         });
 
     });

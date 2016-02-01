@@ -12,3 +12,13 @@ export const MONTHS = Object.freeze([
     'November',
     'December'
 ]);
+
+export const DAYS = Object.freeze([
+    'Sunday',
+    'Monday',
+    'Tuesday',
+    'Wednesday',
+    'Thursday',
+    'Friday',
+    'Saturday'
+]);

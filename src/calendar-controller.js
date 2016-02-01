@@ -1,4 +1,4 @@
-import {MONTHS as months} from './calendar-constants';
+import {MONTHS, DAYS} from './calendar-constants';
 import {validateYear, validateMonthIndex, validateDay} from './date-validator';
 
 export default function CalendarController() {
@@ -43,15 +43,20 @@ export default function CalendarController() {
         validateDay(dayNumber);
         validateMonthIndex(monthIndex);
         validateYear(year);
-        return new DayModel(dayNumber);
+        return new DayModel(dayNumber, monthIndex, year);
     }
 }
 
 function MonthModel(monthIndex, year) {
-    this.monthName = months[monthIndex];
+    this.monthName = MONTHS[monthIndex];
     this.year = year;
 }
 
-function DayModel(dayNumber) {
+function DayModel(dayNumber, monthIndex, year) {
+    const dateObject = new Date(year, monthIndex, dayNumber);
+    this.dayName = DAYS[dateObject.getDay()];
+    this.dayInitial = this.dayName.charAt(0);
     this.dayNumber = dayNumber;
+    this.monthIndex = monthIndex;
+    this.year = year;
 }
