@@ -5,32 +5,22 @@ export function init(id) {
     const calendarCtrl = new CalendarController();
     const now = new Date();
 
-    const calendarElement = document.getElementById(id);
-
     const currentMonth = calendarCtrl.getMonth(now.getMonth(), now.getFullYear());
     const currentDay = calendarCtrl.getDay(now.getDate(), now.getMonth(), now.getFullYear());
 
+    const calendarElement = document.getElementById(id);
+
     calendarElement.innerHTML = buildCalendar(currentMonth, currentDay);
 
-    const previousMonthLink = calendarElement.getElementsByClassName('prev-month')[0];
-    const nextMonthLink = calendarElement.getElementsByClassName('next-month')[0];
-    const currentMonthTitle = calendarElement.getElementsByClassName('current-month')[0];
-    const currentYearTitle = calendarElement.getElementsByClassName('current-year')[0];
-    const monthTable = calendarElement.getElementsByClassName('month-table')[0];
+    const $cal = new CalendarDOM(calendarElement);
 
-    previousMonthLink.addEventListener('click', () => {
-        const prevMonth = calendarCtrl.previousMonth();
-        currentMonthTitle.innerHTML = prevMonth.monthName;
-        currentYearTitle.innerHTML = prevMonth.year;
-        monthTable.innerHTML = buildMonthTable(prevMonth.grid);
+    $cal.previousMonthLink.addEventListener('click', () => {
+        changeMonth($cal, calendarCtrl.previousMonth());
         return false;
     });
 
-    nextMonthLink.addEventListener('click', () => {
-        const nextMonth = calendarCtrl.nextMonth();
-        currentMonthTitle.innerHTML = nextMonth.monthName;
-        currentYearTitle.innerHTML = nextMonth.year;
-        monthTable.innerHTML = buildMonthTable(nextMonth.grid);
+    $cal.nextMonthLink.addEventListener('click', () => {
+        changeMonth($cal, calendarCtrl.nextMonth());
         return false;
     });
 }
@@ -86,4 +76,18 @@ function buildMonthTableBody(grid) {
         return `<tr>${cells.join('')}</tr>`;
     });
     return rows.join('');
+}
+
+function CalendarDOM(root) {
+    this.previousMonthLink = root.getElementsByClassName('prev-month')[0];
+    this.nextMonthLink = root.getElementsByClassName('next-month')[0];
+    this.currentMonthTitle = root.getElementsByClassName('current-month')[0];
+    this.currentYearTitle = root.getElementsByClassName('current-year')[0];
+    this.monthTable = root.getElementsByClassName('month-table')[0];
+}
+
+function changeMonth($cal, newMonth) {
+    $cal.currentMonthTitle.innerHTML = newMonth.monthName;
+    $cal.currentYearTitle.innerHTML = newMonth.year;
+    $cal.monthTable.innerHTML = buildMonthTable(newMonth.grid);
 }
