@@ -6,34 +6,36 @@ export function init(id) {
     const now = new Date();
 
     const currentMonth = calendarCtrl.getMonth(now.getMonth(), now.getFullYear());
-    const currentDay = calendarCtrl.getDay(now.getDate(), now.getMonth(), now.getFullYear());
+
+    calendarCtrl.getDay(now.getDate(), now.getMonth(), now.getFullYear());
 
     const calendarElement = document.getElementById(id);
 
-    calendarElement.innerHTML = buildCalendar(currentMonth, currentDay);
+    calendarElement.innerHTML = buildCalendar(currentMonth, calendarCtrl);
 
     const $cal = new CalendarDOM(calendarElement);
 
     $cal.previousMonthLink.addEventListener('click', () => {
-        changeMonth($cal, calendarCtrl.previousMonth());
+        changeMonth($cal, calendarCtrl.previousMonth(), calendarCtrl);
         return false;
     });
 
     $cal.nextMonthLink.addEventListener('click', () => {
-        changeMonth($cal, calendarCtrl.nextMonth());
+        changeMonth($cal, calendarCtrl.nextMonth(), calendarCtrl);
         return false;
     });
 }
 
-function buildCalendar(month, day) {
+function buildCalendar(month, calendarCtrl) {
+    const currentDay = calendarCtrl.getCurrentDay();
     const calendarHtml =  `
         <zwl-calendar>
             <section class="day-view">
                 <p class="day-name">
-                    ${day.dayName}
+                    ${currentDay.dayName}
                 </p>
                 <p class="day-number">
-                    ${day.dayNumber}
+                    ${currentDay.dayNumber}
                 </p>
             </section>
             <section class="month-view">
@@ -50,7 +52,7 @@ function buildCalendar(month, day) {
                 <table class="month-table">
                     <thead>${buildMonthTableHeader()}</thead>
                     <tbody class="month-table-body">
-                        ${buildMonthTableBody(month, day)}
+                        ${buildMonthTableBody(month, currentDay)}
                     </tbody>
                 </table>
             <section>
@@ -66,7 +68,7 @@ function buildMonthTableHeader() {
     return headerHtml;
 }
 
-function buildMonthTableBody(month, day = {}) {
+function buildMonthTableBody(month, day) {
     const rows = month.grid.map(week => {
         const cells = week.map(dayNumber => {
             const isActiveDay = isDay(month, dayNumber, day);
@@ -94,8 +96,8 @@ function CalendarDOM(root) {
     this.monthTableBody = root.getElementsByClassName('month-table-body')[0];
 }
 
-function changeMonth($cal, newMonth) {
+function changeMonth($cal, newMonth, calendarCtrl) {
     $cal.currentMonthTitle.innerHTML = newMonth.monthName;
     $cal.currentYearTitle.innerHTML = newMonth.year;
-    $cal.monthTableBody.innerHTML = buildMonthTableBody(newMonth);
+    $cal.monthTableBody.innerHTML = buildMonthTableBody(newMonth, calendarCtrl.getCurrentDay());
 }
