@@ -11,7 +11,7 @@ export default function CalendarController() {
     this.getMonth = getMonth;
     this.nextMonth = nextMonth;
     this.previousMonth = previousMonth;
-    this.getDay = getDay;
+    this.setCurrentDay = setCurrentDay;
     this.getCurrentDay = getCurrentDay;
 
     function getMonth(monthIndex, year) {
@@ -42,19 +42,17 @@ export default function CalendarController() {
         return this.getMonth(currentMonth - 1, currentYear);
     }
 
-    function getDay(dayNumber, monthIndex, year) {
+    function setCurrentDay(dayNumber, monthIndex, year) {
         validateDay(dayNumber);
         validateMonthIndex(monthIndex);
         validateYear(year);
-        const dayModel = new DayModel(dayNumber, monthIndex, year);
-        this.currentDay = dayModel;
-        return dayModel;
+        currentDay = new DayModel(dayNumber, monthIndex, year);
     }
 
     function getCurrentDay() {
-        if (!this.currentDay) {
+        if (!currentDay) {
             throw new Error();
         }
-        return this.currentDay;
+        return currentDay;
     }
 }

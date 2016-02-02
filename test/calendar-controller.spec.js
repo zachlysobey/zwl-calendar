@@ -167,16 +167,23 @@ describe('calendar controller', () => {
 
     });
 
-    describe('getDay() method', () => {
+    describe('current day methods', () => {
 
-        it('should exist', () => {
-            expect(typeof calendarCtrl.getDay).toEqual('function');
+        it('should have methods setCurrentDay & getCurrentDay', () => {
+            expect(typeof calendarCtrl.setCurrentDay).toEqual('function');
+            expect(typeof calendarCtrl.getCurrentDay).toEqual('function');
+        });
+
+        describe('getCurrentDay()', () => {
+            it('should throw error if setCurrentDay() has not been called', () => {
+                expect(() => calendarCtrl.getCurrentDay()).toThrow();
+            });
         });
 
         it('should throw an Error if 1st argument (day number) is not an integer 1 - 31', () => {
             const invalidDayNumbers = [undefined, null, 'string', {}, [], -1, 32, 3.5, 123];
             invalidDayNumbers.forEach(dayNumber => {
-                expect(() => calendarCtrl.getDay(dayNumber)).toThrow();
+                expect(() => calendarCtrl.setCurrentDay(dayNumber)).toThrow();
             });
         });
 
@@ -184,7 +191,7 @@ describe('calendar controller', () => {
             const dayNumber = 1;
             const invalidMonthIndicies = [undefined, null, 'string', {}, [], -1, 12, 3.5, 111];
             invalidMonthIndicies.forEach(monthIndex => {
-                expect(() => calendarCtrl.getDay(dayNumber, monthIndex)).toThrow();
+                expect(() => calendarCtrl.setCurrentDay(dayNumber, monthIndex)).toThrow();
             });
         });
 
@@ -193,12 +200,13 @@ describe('calendar controller', () => {
             const monthIndex = 3;
             const invalidYears = [undefined, null, 'string', {}, [], 3.5];
             invalidYears.forEach(year => {
-                expect(() => calendarCtrl.getDay(dayNumber, monthIndex, year)).toThrow();
+                expect(() => calendarCtrl.setCurrentDay(dayNumber, monthIndex, year)).toThrow();
             });
         });
 
         it('should return an object representing the day', () => {
-            expect(calendarCtrl.getDay(1, 0, 2015)).toEqual(jasmine.objectContaining({
+            calendarCtrl.setCurrentDay(1, 0, 2015);
+            expect(calendarCtrl.getCurrentDay(1, 0, 2015)).toEqual(jasmine.objectContaining({
                 dayNumber: 1,
                 dayName: 'Thursday',
                 dayInitial: 'T',
@@ -206,7 +214,8 @@ describe('calendar controller', () => {
                 year: 2015
             }));
 
-            expect(calendarCtrl.getDay(31, 0, 2016)).toEqual(jasmine.objectContaining({
+            calendarCtrl.setCurrentDay(31, 0, 2016);
+            expect(calendarCtrl.getCurrentDay()).toEqual(jasmine.objectContaining({
                 dayNumber: 31,
                 dayName: 'Sunday',
                 dayInitial: 'S',
@@ -214,29 +223,6 @@ describe('calendar controller', () => {
                 year: 2016
             }));
         });
-
-    });
-
-    describe('getCurrentDay()', () => {
-
-        it('should exist', () => {
-            expect(typeof calendarCtrl.getCurrentDay).toEqual('function');
-        });
-
-        it('should throw error if getDay() has not been called', () => {
-            expect(() => calendarCtrl.getCurrentDay()).toThrow();
-        });
-
-        it('should return the same day model as the most recent call to getDay', () => {
-            const day = calendarCtrl.getDay(10, 10, 2016);
-            expect(calendarCtrl.getCurrentDay()).toEqual(day);
-            expect(calendarCtrl.getCurrentDay()).toEqual(day);
-
-            calendarCtrl.getDay(5, 5, 2016);
-            const newDay = calendarCtrl.getDay(1, 1, 2016);
-            expect(calendarCtrl.getCurrentDay()).toEqual(newDay);
-        });
-
     });
 
 });
