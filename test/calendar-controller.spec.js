@@ -217,4 +217,26 @@ describe('calendar controller', () => {
 
     });
 
+    describe('getCurrentDay()', () => {
+
+        it('should exist', () => {
+            expect(typeof calendarCtrl.getCurrentDay).toEqual('function');
+        });
+
+        it('should throw error if getDay() has not been called', () => {
+            expect(() => calendarCtrl.getCurrentDay()).toThrow();
+        });
+
+        it('should return the same day model as the most recent call to getDay', () => {
+            const day = calendarCtrl.getDay(10, 10, 2016);
+            expect(calendarCtrl.getCurrentDay()).toEqual(day);
+            expect(calendarCtrl.getCurrentDay()).toEqual(day);
+
+            calendarCtrl.getDay(5, 5, 2016);
+            const newDay = calendarCtrl.getDay(1, 1, 2016);
+            expect(calendarCtrl.getCurrentDay()).toEqual(newDay);
+        });
+
+    });
+
 });

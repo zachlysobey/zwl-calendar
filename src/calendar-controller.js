@@ -4,6 +4,7 @@ import {validateYear, validateMonthIndex, validateDay} from './date-validator';
 
 export default function CalendarController() {
 
+    let currentDay;
     let currentMonth;
     let currentYear;
 
@@ -11,6 +12,7 @@ export default function CalendarController() {
     this.nextMonth = nextMonth;
     this.previousMonth = previousMonth;
     this.getDay = getDay;
+    this.getCurrentDay = getCurrentDay;
 
     function getMonth(monthIndex, year) {
         validateMonthIndex(monthIndex);
@@ -44,6 +46,15 @@ export default function CalendarController() {
         validateDay(dayNumber);
         validateMonthIndex(monthIndex);
         validateYear(year);
-        return new DayModel(dayNumber, monthIndex, year);
+        const dayModel = new DayModel(dayNumber, monthIndex, year);
+        this.currentDay = dayModel;
+        return dayModel;
+    }
+
+    function getCurrentDay() {
+        if (!this.currentDay) {
+            throw new Error();
+        }
+        return this.currentDay;
     }
 }
