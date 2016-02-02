@@ -60,3 +60,8 @@ zwl-calendar .month-table td {
     padding: 2px 12px;
     text-align: center;
 }
+
+zwl-calendar .month-table td.active {
+    background: red;
+    color: white;
+}

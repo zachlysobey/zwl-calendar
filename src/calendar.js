@@ -48,19 +48,15 @@ function buildCalendar(month, day) {
                     <a href="#" class="next-month">&gt;</a>
                 </header>
                 <table class="month-table">
-                    ${buildMonthTable(month.grid)}
+                    <thead>${buildMonthTableHeader()}</thead>
+                    <tbody class="month-table-body">
+                        ${buildMonthTableBody(month, day)}
+                    </tbody>
                 </table>
             <section>
         </zwl-calendar>
     `;
     return calendarHtml;
-}
-
-function buildMonthTable(grid) {
-    return `
-        <thead>${buildMonthTableHeader()}</thead>
-        <tbody>${buildMonthTableBody(grid)}</tbody>
-    `;
 }
 
 function buildMonthTableHeader() {
@@ -70,24 +66,36 @@ function buildMonthTableHeader() {
     return headerHtml;
 }
 
-function buildMonthTableBody(grid) {
-    const rows = grid.map(week => {
-        const cells = week.map(dayNumber => `<td>${dayNumber ? dayNumber : ''}</td>`);
+function buildMonthTableBody(month, day = {}) {
+    const rows = month.grid.map(week => {
+        const cells = week.map(dayNumber => {
+            const isActiveDay = isDay(month, dayNumber, day);
+            return `
+                <td class="${isActiveDay ? 'active' : ''}">
+                    ${dayNumber ? dayNumber : ''}
+                </td>
+            `;
+        });
         return `<tr>${cells.join('')}</tr>`;
     });
     return rows.join('');
 }
 
+function isDay(month, dayNumber, day) {
+    return month.year === day.year
+        && month.monthIndex === day.monthIndex
+        && dayNumber === day.dayNumber;
+}
 function CalendarDOM(root) {
     this.previousMonthLink = root.getElementsByClassName('prev-month')[0];
     this.nextMonthLink = root.getElementsByClassName('next-month')[0];
     this.currentMonthTitle = root.getElementsByClassName('current-month')[0];
     this.currentYearTitle = root.getElementsByClassName('current-year')[0];
-    this.monthTable = root.getElementsByClassName('month-table')[0];
+    this.monthTableBody = root.getElementsByClassName('month-table-body')[0];
 }
 
 function changeMonth($cal, newMonth) {
     $cal.currentMonthTitle.innerHTML = newMonth.monthName;
     $cal.currentYearTitle.innerHTML = newMonth.year;
-    $cal.monthTable.innerHTML = buildMonthTable(newMonth.grid);
+    $cal.monthTableBody.innerHTML = buildMonthTableBody(newMonth);
 }
