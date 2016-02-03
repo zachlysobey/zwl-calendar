@@ -16,6 +16,18 @@ export function init(id) {
 
     const $cal = new CalendarDOM(calendarElement);
 
+    document.addEventListener('keyup', event => {
+        // TODO prevent action if input or textarea is focused
+        const arrowKeyCodes = { left: 37, right: 39 };
+        const keyCode = event.which || event.keyCode;
+        if (keyCode === arrowKeyCodes.left) {
+            changeMonth($cal, calendarCtrl.previousMonth(), calendarCtrl);
+        }
+        if (keyCode === arrowKeyCodes.right) {
+            changeMonth($cal, calendarCtrl.nextMonth(), calendarCtrl);
+        }
+    });
+
     $cal.previousMonthLink.addEventListener('click', () => {
         changeMonth($cal, calendarCtrl.previousMonth(), calendarCtrl);
         return false;
