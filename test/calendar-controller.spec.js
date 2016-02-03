@@ -223,6 +223,17 @@ describe('calendar controller', () => {
                 year: 2016
             }));
         });
+
+        it('should allow ommision of year and monthIndex params if getMonth was called', () => {
+            calendarCtrl.getMonth(11, 1990);
+            calendarCtrl.setCurrentDay(31);
+            expect(calendarCtrl.getCurrentDay()).toEqual(jasmine.objectContaining({
+                dayNumber: 31,
+                monthIndex: 11,
+                year: 1990
+            }));
+        });
+
     });
 
 });

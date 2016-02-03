@@ -42,7 +42,7 @@ export default function CalendarController() {
         return this.getMonth(currentMonth - 1, currentYear);
     }
 
-    function setCurrentDay(dayNumber, monthIndex, year) {
+    function setCurrentDay(dayNumber, monthIndex = currentMonth, year = currentYear) {
         validateDay(dayNumber);
         validateMonthIndex(monthIndex);
         validateYear(year);
