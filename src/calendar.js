@@ -1,3 +1,4 @@
+import './polyfill/number-is-integer';
 import CalendarController from './calendar-controller';
 import {DAYS} from './calendar-constants';
 
@@ -22,6 +23,21 @@ export function init(id) {
 
     $cal.nextMonthLink.addEventListener('click', () => {
         changeMonth($cal, calendarCtrl.nextMonth(), calendarCtrl);
+        return false;
+    });
+
+    $cal.monthTableBody.addEventListener('click', event => {
+        const srcElement = event.srcElement;
+        if (srcElement.tagName !== 'A') {
+            return true;
+        }
+        const dayNumber = srcElement.innerHTML;
+        calendarCtrl.setCurrentDay(Number(dayNumber));
+        const currentDay = calendarCtrl.getCurrentDay();
+        $cal.dayName.innerHTML = currentDay.dayName;
+        $cal.dayNumber.innerHTML = currentDay.dayNumber;
+        clearGridCellClasses($cal);
+        srcElement.parentElement.className = 'active';
         return false;
     });
 }
@@ -74,7 +90,7 @@ function buildMonthTableBody(month, day) {
             const isActiveDay = isDay(month, dayNumber, day);
             return `
                 <td class="${isActiveDay ? 'active' : ''}">
-                    ${dayNumber ? dayNumber : ''}
+                    ${dayNumber ? `<a href="#">${dayNumber}</a>` : ''}
                 </td>
             `;
         });
@@ -88,16 +104,28 @@ function isDay(month, dayNumber, day) {
         && month.monthIndex === day.monthIndex
         && dayNumber === day.dayNumber;
 }
+
 function CalendarDOM(root) {
+    this.root = root;
+    this.dayName = root.getElementsByClassName('day-name')[0];
+    this.dayNumber = root.getElementsByClassName('day-number')[0];
     this.previousMonthLink = root.getElementsByClassName('prev-month')[0];
     this.nextMonthLink = root.getElementsByClassName('next-month')[0];
     this.currentMonthTitle = root.getElementsByClassName('current-month')[0];
     this.currentYearTitle = root.getElementsByClassName('current-year')[0];
     this.monthTableBody = root.getElementsByClassName('month-table-body')[0];
+    this.getGridCells = () => this.monthTableBody.getElementsByTagName('td');
 }
 
 function changeMonth($cal, newMonth, calendarCtrl) {
     $cal.currentMonthTitle.innerHTML = newMonth.monthName;
     $cal.currentYearTitle.innerHTML = newMonth.year;
     $cal.monthTableBody.innerHTML = buildMonthTableBody(newMonth, calendarCtrl.getCurrentDay());
+}
+
+function clearGridCellClasses($cal) {
+    const cells = $cal.getGridCells();
+    for (let i = 0; i < cells.length; i++) {
+        cells[i].className = '';
+    }
 }

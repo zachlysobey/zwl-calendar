@@ -63,5 +63,13 @@ zwl-calendar .month-table td {
 
 zwl-calendar .month-table td.active {
     background: red;
+}
+
+zwl-calendar .month-table a {
+    color: black;
+    text-decoration: none;
+}
+
+zwl-calendar .month-table td.active  a {
     color: white;
 }
