@@ -1,6 +1,7 @@
 import './polyfill/number-is-integer';
 import CalendarController from './calendar-controller';
 import {DAYS} from './calendar-constants';
+require('./style.less');
 
 export function init(id) {
     const calendarCtrl = new CalendarController();
