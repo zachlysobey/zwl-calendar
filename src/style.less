@@ -34,46 +34,46 @@ zwl-calendar {
     .month-navigation {
         margin-top: 10px;
         margin-bottom: 20px;
-    }
 
-    .month-navigation .prev-month,
-    .month-navigation .next-month {
-        text-decoration: none;
-        color: #333;
-    }
+        .prev-month,
+        .next-month {
+            text-decoration: none;
+            color: #333;
+        }
 
-    .month-navigation .prev-month {
-        margin-left: 1em;
-        float: left;
-    }
+        .prev-month {
+            margin-left: 1em;
+            float: left;
+        }
 
-    .month-navigation .next-month {
-        margin-right: 1em;
-        float: right;
-    }
-
-    .month-table td.active {
-        background: red;
+        .next-month {
+            margin-right: 1em;
+            float: right;
+        }
     }
 
     .month-table {
         color: #333;
         text-decoration: none;
         width: 100%;
-    }
 
-    .month-table a {
-        color: #333;
-        text-decoration: none;
-        display: block;
-        font-weight: bold;
-    }
+        td.active {
+            background: red;
+        }
 
-    .month-table a:hover {
-        background: rgba(255, 0, 0, .2);
-    }
+        a {
+            color: #333;
+            text-decoration: none;
+            display: block;
+            font-weight: bold;
+        }
 
-    .month-table .active a {
-        color: white;
+        a:hover {
+            background: rgba(255, 0, 0, .2);
+        }
+
+        .active a {
+            color: white;
+        }
     }
 }
