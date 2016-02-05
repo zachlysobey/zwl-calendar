@@ -1,7 +1,7 @@
 import './polyfill/number-is-integer';
 import CalendarController from './calendar-controller';
 import {DAYS} from './calendar-constants';
-require('./style.less');
+require('./style.scss');
 
 export function init(id) {
     const calendarCtrl = new CalendarController();

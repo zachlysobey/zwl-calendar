@@ -19,9 +19,9 @@ module.exports = {
                 }
             },
             {
-                test: /\.less$/,
+                test: /\.scss$/,
                 exclude: /node_modules/,
-                loader: 'style!css!less'
+                loader: 'style!css!sass'
             }
         ]
     }
