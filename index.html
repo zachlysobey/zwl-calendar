@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>zwl-calendar</title>
+</head>
+<body>
+    <h1>
+        ZWL Calendar
+        <a href="https://travis-ci.org/zachlysobey/zwl-calendar">
+            <img
+                src="https://travis-ci.org/zachlysobey/zwl-calendar.svg?branch=master"
+                alt="TravisCI build status"
+            />
+        </a>
+    </h1>
+    <p>
+        (<a href="https://github.com/zachlysobey/zwl-calendar">
+            View Code on GitHub
+        </a>)
+    </p>
+    <h2>Usage:</h2>
+    <p>Include the <code>zwl-calendar.js</code> script.</p>
+    <p>
+        ZWL Calendar exports a global variable (<code>zwlCalendar</code>)
+        with an <code>.init()</code> method. Pass <code>init()</code> the
+        id of a DOM element, and a new ZWL calendar will be inserted into
+        that element.
+    </p>
+<pre><code>
+&lt;div id="my-calendar \"&gt;
+
+&lt;script&gt;
+zwlCalendar.init('my-calendar');
+&lt;/script&gt;
+</code></pre>
+    <div id="my-calendar" />
+    <script src="zwl-calendar.js"></script>
+    <script>
+        zwlCalendar.init('my-calendar');
+    </script>
+</body>
+</html>
